@@ -63,62 +63,64 @@
             border-color: #667eea;
         }
 
-        .filters {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
+        .filter-section {
             margin-bottom: 20px;
         }
 
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .filter-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .filter-group select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 0.95rem;
+        .filter-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
             cursor: pointer;
-            transition: border-color 0.3s;
+            user-select: none;
         }
 
-        .filter-group select:focus {
-            outline: none;
-            border-color: #667eea;
+        .filter-section-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
         }
 
-        .tags-container {
+        .collapse-icon {
+            display: none;
+            font-size: 1.2rem;
+            color: #667eea;
+            transition: transform 0.3s;
+        }
+
+        .filter-section.collapsed .collapse-icon {
+            transform: rotate(180deg);
+        }
+
+        .filter-section.collapsed .filter-buttons {
+            display: none;
+        }
+
+        .filter-buttons {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
 
-        .tag-filter {
+        .filter-btn {
             padding: 8px 16px;
             background: #f5f5f5;
-            border: 2px solid transparent;
+            border: 2px solid #e0e0e0;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
             font-size: 0.9rem;
             user-select: none;
+            color: #555;
         }
 
-        .tag-filter:hover {
+        .filter-btn:hover {
             background: #e8e8e8;
+            border-color: #d0d0d0;
         }
 
-        .tag-filter.active {
+        .filter-btn.active {
             background: #667eea;
             color: white;
             border-color: #667eea;
@@ -134,11 +136,55 @@
             font-size: 1rem;
             font-weight: 600;
             transition: background 0.3s;
-            margin-top: 15px;
+            width: 100%;
         }
 
         .reset-btn:hover {
             background: #ee5a52;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .controls {
+                padding: 15px;
+            }
+
+            .collapse-icon {
+                display: block;
+            }
+
+            .filter-section {
+                margin-bottom: 15px;
+            }
+
+            .filter-section:not(:first-child) .filter-buttons {
+                display: none;
+            }
+
+            .filter-section:not(:first-child) {
+                border-bottom: 1px solid #f0f0f0;
+                padding-bottom: 10px;
+            }
+
+            .filter-section:not(:first-child).collapsed .filter-buttons {
+                display: none;
+            }
+
+            .filter-section:not(:first-child):not(.collapsed) .filter-buttons {
+                display: flex;
+            }
+
+            .search-box {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .games-grid {
@@ -245,6 +291,68 @@
             color: white;
         }
 
+        .game-description {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .description-preview {
+            position: relative;
+            max-height: 3em;
+            overflow: hidden;
+            line-height: 1.5em;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .description-preview.expanded {
+            max-height: none;
+        }
+
+        .description-preview::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1.5em;
+            background: linear-gradient(to bottom, transparent, white);
+            pointer-events: none;
+        }
+
+        .description-preview.expanded::after {
+            display: none;
+        }
+
+        .description-toggle {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s;
+        }
+
+        .description-toggle:hover {
+            color: #5568d3;
+        }
+
+        .description-toggle .arrow {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .description-toggle.expanded .arrow {
+            transform: rotate(180deg);
+        }
+
         .no-results {
             text-align: center;
             padding: 60px 20px;
@@ -290,46 +398,53 @@
     <div class="controls">
         <input type="text" class="search-box" id="searchBox" placeholder="🔍 Поиск по названию...">
 
-        <div class="filters">
-            <div class="filter-group">
-                <label for="playersFilter">Количество игроков</label>
-                <select id="playersFilter">
-                    <option value="">Все</option>
-                    <option value="2">2 игрока</option>
-                    <option value="3">3 игрока</option>
-                    <option value="4">4 игрока</option>
-                    <option value="5">5 игроков</option>
-                    <option value="6">6+ игроков</option>
-                </select>
+        <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleSection(this)">
+                <span class="filter-section-title">👥 Количество игроков</span>
+                <span class="collapse-icon">▼</span>
             </div>
-
-            <div class="filter-group">
-                <label for="learningFilter">Сложность освоения</label>
-                <select id="learningFilter">
-                    <option value="">Все</option>
-                    <option value="моментально">Моментально (до 3 мин)</option>
-                    <option value="быстро">Быстро (5-10 мин)</option>
-                    <option value="долго">Долго (15+ мин)</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label for="timeFilter">Время игры</label>
-                <select id="timeFilter">
-                    <option value="">Все</option>
-                    <option value="короткая">Короткая (до 30 мин)</option>
-                    <option value="средняя">Средняя (30-60 мин)</option>
-                    <option value="длинная">Длинная (60+ мин)</option>
-                </select>
+            <div class="filter-buttons" id="playersFilter">
+                <div class="filter-btn" data-value="2">2 игрока</div>
+                <div class="filter-btn" data-value="3">3 игрока</div>
+                <div class="filter-btn" data-value="4">4 игрока</div>
+                <div class="filter-btn" data-value="5">5 игроков</div>
+                <div class="filter-btn" data-value="6">6+ игроков</div>
             </div>
         </div>
 
-        <div style="margin-bottom: 10px;">
-            <label style="font-weight: 600; color: #333; display: block; margin-bottom: 10px;">Фильтр по тегам (клик для выбора):</label>
-            <div class="tags-container" id="tagsFilter"></div>
+        <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleSection(this)">
+                <span class="filter-section-title">🎓 Сложность освоения</span>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="filter-buttons" id="learningFilter">
+                <div class="filter-btn" data-value="моментально">Моментально (до 3 мин)</div>
+                <div class="filter-btn" data-value="быстро">Быстро (5-10 мин)</div>
+                <div class="filter-btn" data-value="долго">Долго (15+ мин)</div>
+            </div>
         </div>
 
-        <button class="reset-btn" onclick="resetFilters()">🔄 Сбросить фильтры</button>
+        <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleSection(this)">
+                <span class="filter-section-title">⏱️ Время игры</span>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="filter-buttons" id="timeFilter">
+                <div class="filter-btn" data-value="короткая">Короткая (до 30 мин)</div>
+                <div class="filter-btn" data-value="средняя">Средняя (30-60 мин)</div>
+                <div class="filter-btn" data-value="длинная">Длинная (60+ мин)</div>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-section-header" onclick="toggleSection(this)">
+                <span class="filter-section-title">🏷️ Теги (можно выбрать несколько)</span>
+                <span class="collapse-icon">▼</span>
+            </div>
+            <div class="filter-buttons" id="tagsFilter"></div>
+        </div>
+
+        <button class="reset-btn" onclick="resetFilters()">🔄 Сбросить все фильтры</button>
     </div>
 
     <div class="games-grid" id="gamesGrid"></div>
@@ -343,6 +458,22 @@
     let gamesData = [];
     let allTags = new Set();
     let activeTagFilters = new Set();
+    let activePlayersFilter = null;
+    let activeLearningFilter = null;
+    let activeTimeFilter = null;
+
+    // Константы для фильтров
+    const LEARNING_TIME_RANGES = {
+        'моментально': { max: 3 },
+        'быстро': { min: 4, max: 10 },
+        'долго': { min: 11 }
+    };
+
+    const PLAYTIME_RANGES = {
+        'короткая': { max: 30 },
+        'средняя': { min: 31, max: 60 },
+        'длинная': { min: 61 }
+    };
 
     async function loadGames() {
         try {
@@ -355,6 +486,7 @@
             });
 
             renderTagFilters();
+            setupFilterButtons();
             renderGames(gamesData);
             updateStats();
         } catch (error) {
@@ -362,12 +494,70 @@
         }
     }
 
+    function toggleSection(header) {
+        // Только на мобилке
+        if (window.innerWidth <= 768) {
+            const section = header.parentElement;
+            section.classList.toggle('collapsed');
+        }
+    }
+
+    function setupFilterButtons() {
+        // Настройка кнопок игроков
+        document.querySelectorAll('#playersFilter .filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const value = this.dataset.value;
+                if (activePlayersFilter === value) {
+                    activePlayersFilter = null;
+                    this.classList.remove('active');
+                } else {
+                    document.querySelectorAll('#playersFilter .filter-btn').forEach(b => b.classList.remove('active'));
+                    activePlayersFilter = value;
+                    this.classList.add('active');
+                }
+                filterGames();
+            });
+        });
+
+        // Настройка кнопок сложности
+        document.querySelectorAll('#learningFilter .filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const value = this.dataset.value;
+                if (activeLearningFilter === value) {
+                    activeLearningFilter = null;
+                    this.classList.remove('active');
+                } else {
+                    document.querySelectorAll('#learningFilter .filter-btn').forEach(b => b.classList.remove('active'));
+                    activeLearningFilter = value;
+                    this.classList.add('active');
+                }
+                filterGames();
+            });
+        });
+
+        // Настройка кнопок времени
+        document.querySelectorAll('#timeFilter .filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const value = this.dataset.value;
+                if (activeTimeFilter === value) {
+                    activeTimeFilter = null;
+                    this.classList.remove('active');
+                } else {
+                    document.querySelectorAll('#timeFilter .filter-btn').forEach(b => b.classList.remove('active'));
+                    activeTimeFilter = value;
+                    this.classList.add('active');
+                }
+                filterGames();
+            });
+        });
+    }
+
     function renderTagFilters() {
         const container = document.getElementById('tagsFilter');
         const sortedTags = Array.from(allTags).sort();
 
         container.innerHTML = sortedTags.map(tag =>
-            `<div class="tag-filter" onclick="toggleTagFilter('${tag}')">${tag}</div>`
+            `<div class="filter-btn" onclick="toggleTagFilter('${tag}')">${tag}</div>`
         ).join('');
     }
 
@@ -378,7 +568,7 @@
             activeTagFilters.add(tag);
         }
 
-        document.querySelectorAll('.tag-filter').forEach(el => {
+        document.querySelectorAll('#tagsFilter .filter-btn').forEach(el => {
             if (el.textContent === tag) {
                 el.classList.toggle('active');
             }
@@ -441,6 +631,23 @@
 
             const learningText = game.timeToLearn > 0 ? `${game.timeToLearn} мин` : 'не указано';
 
+            // Описание игры
+            let descriptionHtml = '';
+            if (game.descriptionShort && game.descriptionShort.trim()) {
+                const descId = `desc-${Math.random().toString(36).substr(2, 9)}`;
+                descriptionHtml = `
+                        <div class="game-description">
+                            <div class="description-preview" id="${descId}">
+                                ${game.descriptionShort}
+                            </div>
+                            <button class="description-toggle" onclick="toggleDescription('${descId}', this)">
+                                <span class="toggle-text">Читать далее</span>
+                                <span class="arrow">▼</span>
+                            </button>
+                        </div>
+                    `;
+            }
+
             return `
                     <div class="game-card">
                         ${imageHtml}
@@ -465,6 +672,7 @@
                                     <span class="info-value">${game.quantity} шт</span>
                                 </div>` : ''}
                             </div>
+                            ${descriptionHtml}
                             <div class="game-tags">
                                 ${game.tags.map(tag => {
                 const isActive = activeTagFilters.has(tag);
@@ -477,33 +685,84 @@
         }).join('');
     }
 
+    function toggleDescription(descId, button) {
+        const descElement = document.getElementById(descId);
+        const isExpanded = descElement.classList.contains('expanded');
+
+        if (isExpanded) {
+            descElement.classList.remove('expanded');
+            button.classList.remove('expanded');
+            button.querySelector('.toggle-text').textContent = 'Читать далее';
+        } else {
+            descElement.classList.add('expanded');
+            button.classList.add('expanded');
+            button.querySelector('.toggle-text').textContent = 'Свернуть';
+        }
+    }
+
     function filterGames() {
         const searchTerm = document.getElementById('searchBox').value.toLowerCase();
-        const playersFilter = document.getElementById('playersFilter').value;
-        const learningFilter = document.getElementById('learningFilter').value;
-        const timeFilter = document.getElementById('timeFilter').value;
 
         const filtered = gamesData.filter(game => {
+            // Поиск по названию
             if (searchTerm && !game.name.toLowerCase().includes(searchTerm)) {
                 return false;
             }
 
-            if (playersFilter) {
-                const players = parseInt(playersFilter);
+            // Фильтр по игрокам - проверяем что запрошенное количество входит в диапазон игры
+            if (activePlayersFilter) {
+                const requestedPlayers = parseInt(activePlayersFilter);
+                const minPlayers = game.playersMinRecommend > 0 ? game.playersMinRecommend : game.playersMin;
                 const maxPlayers = game.playersMaxRecommend > 0 ? game.playersMaxRecommend : game.playersMax;
-                if (maxPlayers > 0 && maxPlayers < players) {
+
+                // Пропускаем игры без данных о количестве игроков
+                if (maxPlayers === 0) {
+                    return true; // Не фильтруем игры без данных
+                }
+
+                // Проверяем что запрошенное количество входит в диапазон
+                if (requestedPlayers < minPlayers || requestedPlayers > maxPlayers) {
                     return false;
                 }
             }
 
-            if (learningFilter && !game.tags.includes(learningFilter)) {
-                return false;
+            // Фильтр по времени обучения - используем реальное свойство timeToLearn
+            if (activeLearningFilter) {
+                const range = LEARNING_TIME_RANGES[activeLearningFilter];
+                const learnTime = game.timeToLearn;
+
+                // Пропускаем игры без данных
+                if (learnTime === 0) {
+                    return true;
+                }
+
+                if (range.max !== undefined && learnTime > range.max) {
+                    return false;
+                }
+                if (range.min !== undefined && learnTime < range.min) {
+                    return false;
+                }
             }
 
-            if (timeFilter && !game.tags.includes(timeFilter)) {
-                return false;
+            // Фильтр по времени игры - используем реальное свойство playtimeMax
+            if (activeTimeFilter) {
+                const range = PLAYTIME_RANGES[activeTimeFilter];
+                const playTime = game.playtimeMax;
+
+                // Пропускаем игры без данных
+                if (playTime === 0) {
+                    return true;
+                }
+
+                if (range.max !== undefined && playTime > range.max) {
+                    return false;
+                }
+                if (range.min !== undefined && playTime < range.min) {
+                    return false;
+                }
             }
 
+            // Фильтр по тегам (должны быть ВСЕ выбранные теги)
             if (activeTagFilters.size > 0) {
                 const hasAllTags = Array.from(activeTagFilters).every(tag =>
                     game.tags.includes(tag)
@@ -527,12 +786,13 @@
 
     function resetFilters() {
         document.getElementById('searchBox').value = '';
-        document.getElementById('playersFilter').value = '';
-        document.getElementById('learningFilter').value = '';
-        document.getElementById('timeFilter').value = '';
 
+        activePlayersFilter = null;
+        activeLearningFilter = null;
+        activeTimeFilter = null;
         activeTagFilters.clear();
-        document.querySelectorAll('.tag-filter').forEach(el => {
+
+        document.querySelectorAll('.filter-btn').forEach(el => {
             el.classList.remove('active');
         });
 
@@ -540,9 +800,6 @@
     }
 
     document.getElementById('searchBox').addEventListener('input', filterGames);
-    document.getElementById('playersFilter').addEventListener('change', filterGames);
-    document.getElementById('learningFilter').addEventListener('change', filterGames);
-    document.getElementById('timeFilter').addEventListener('change', filterGames);
 
     loadGames();
 </script>
