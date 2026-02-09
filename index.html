@@ -715,11 +715,6 @@
                 const minPlayers = game.playersMinRecommend > 0 ? game.playersMinRecommend : game.playersMin;
                 const maxPlayers = game.playersMaxRecommend > 0 ? game.playersMaxRecommend : game.playersMax;
 
-                // Пропускаем игры без данных о количестве игроков
-                if (maxPlayers === 0) {
-                    return true; // Не фильтруем игры без данных
-                }
-
                 // Проверяем что запрошенное количество входит в диапазон
                 if (requestedPlayers < minPlayers || requestedPlayers > maxPlayers) {
                     return false;
@@ -730,11 +725,6 @@
             if (activeLearningFilter) {
                 const range = LEARNING_TIME_RANGES[activeLearningFilter];
                 const learnTime = game.timeToLearn;
-
-                // Пропускаем игры без данных
-                if (learnTime === 0) {
-                    return true;
-                }
 
                 if (range.max !== undefined && learnTime > range.max) {
                     return false;
@@ -748,11 +738,6 @@
             if (activeTimeFilter) {
                 const range = PLAYTIME_RANGES[activeTimeFilter];
                 const playTime = game.playtimeMax;
-
-                // Пропускаем игры без данных
-                if (playTime === 0) {
-                    return true;
-                }
 
                 if (range.max !== undefined && playTime > range.max) {
                     return false;
