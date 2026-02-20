@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Коллекция настольных игр</title>
+    <title>Наши настолки</title>
     <style>
         * {
             margin: 0;
@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
         }
 
         .container {
@@ -24,37 +24,46 @@
         }
 
         header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             color: white;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
         }
 
         .stats {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             opacity: 0.9;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            white-space: nowrap;
         }
 
         .controls {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
 
         .search-box {
             width: 100%;
-            padding: 15px;
-            font-size: 1rem;
+            padding: 11px 14px;
+            font-size: 0.95rem;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-bottom: 14px;
             transition: border-color 0.3s;
         }
 
@@ -64,29 +73,30 @@
         }
 
         .filter-section {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
 
         .filter-section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             cursor: pointer;
             user-select: none;
         }
 
         .filter-section-title {
             font-weight: 600;
-            color: #333;
-            font-size: 1rem;
+            color: #444;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .collapse-icon {
             display: none;
             font-size: 1.2rem;
             color: #667eea;
-            transition: transform 0.3s;
         }
 
         .filter-section.collapsed .collapse-icon {
@@ -99,18 +109,17 @@
 
         .filter-buttons {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 8px 16px;
+            padding: 5px 12px;
             background: #f5f5f5;
-            border: 2px solid #e0e0e0;
-            border-radius: 20px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 16px;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             user-select: none;
             color: #555;
         }
@@ -127,16 +136,15 @@
         }
 
         .reset-btn {
-            padding: 12px 24px;
+            padding: 8px 18px;
             background: #ff6b6b;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            transition: background 0.3s;
-            width: 100%;
+            margin-top: 4px;
         }
 
         .reset-btn:hover {
@@ -145,7 +153,7 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 1.2rem;
             }
 
             .controls {
@@ -178,8 +186,8 @@
             }
 
             .search-box {
-                padding: 12px;
-                font-size: 0.95rem;
+                padding: 10px 12px;
+                font-size: 0.9rem;
             }
 
             .games-grid {
@@ -198,15 +206,13 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
         }
 
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .game-image-link {
@@ -221,11 +227,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 0.3s;
-        }
-
-        .game-image-link:hover .game-image {
-            transform: scale(1.05);
         }
 
         .game-content {
@@ -284,11 +285,23 @@
             border-radius: 12px;
             font-size: 0.8rem;
             color: #555;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .tag:hover {
+            background: #dde0f8;
+            color: #4456c7;
         }
 
         .tag.highlight {
             background: #667eea;
             color: white;
+        }
+
+        .tag.highlight:hover {
+            background: #5568d3;
         }
 
         .game-description {
@@ -305,6 +318,11 @@
             font-size: 0.9rem;
             color: #666;
             margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .description-preview:hover {
+            color: #444;
         }
 
         .description-preview.expanded {
@@ -387,14 +405,6 @@
 </head>
 <body>
 <div class="container">
-    <header>
-        <h1>🎲 Коллекция настольных игр</h1>
-        <p class="stats">
-            Всего игр: <span id="totalGames">0</span> |
-            Показано: <span id="shownGames">0</span>
-        </p>
-    </header>
-
     <div class="controls">
         <input type="text" class="search-box" id="searchBox" placeholder="🔍 Поиск по названию...">
 
@@ -464,15 +474,15 @@
 
     // Константы для фильтров
     const LEARNING_TIME_RANGES = {
-        'моментально': { max: 3 },
-        'быстро': { min: 4, max: 10 },
-        'долго': { min: 11 }
+        'моментально': {max: 3},
+        'быстро': {min: 4, max: 10},
+        'долго': {min: 11}
     };
 
     const PLAYTIME_RANGES = {
-        'короткая': { max: 30 },
-        'средняя': { min: 31, max: 60 },
-        'длинная': { min: 61 }
+        'короткая': {max: 30},
+        'средняя': {min: 31, max: 60},
+        'длинная': {min: 61}
     };
 
     async function loadGames() {
@@ -505,7 +515,7 @@
     function setupFilterButtons() {
         // Настройка кнопок игроков
         document.querySelectorAll('#playersFilter .filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const value = this.dataset.value;
                 if (activePlayersFilter === value) {
                     activePlayersFilter = null;
@@ -521,7 +531,7 @@
 
         // Настройка кнопок сложности
         document.querySelectorAll('#learningFilter .filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const value = this.dataset.value;
                 if (activeLearningFilter === value) {
                     activeLearningFilter = null;
@@ -537,7 +547,7 @@
 
         // Настройка кнопок времени
         document.querySelectorAll('#timeFilter .filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function () {
                 const value = this.dataset.value;
                 if (activeTimeFilter === value) {
                     activeTimeFilter = null;
@@ -568,9 +578,10 @@
             activeTagFilters.add(tag);
         }
 
+        // Sync header filter buttons
         document.querySelectorAll('#tagsFilter .filter-btn').forEach(el => {
             if (el.textContent === tag) {
-                el.classList.toggle('active');
+                el.classList.toggle('active', activeTagFilters.has(tag));
             }
         });
 
@@ -637,10 +648,10 @@
                 const descId = `desc-${Math.random().toString(36).substr(2, 9)}`;
                 descriptionHtml = `
                         <div class="game-description">
-                            <div class="description-preview" id="${descId}">
+                            <div class="description-preview" id="${descId}" onclick="toggleDescription('${descId}', document.querySelector('[data-desc-id=\\'${descId}\\']'))">
                                 ${game.descriptionShort}
                             </div>
-                            <button class="description-toggle" onclick="toggleDescription('${descId}', this)">
+                            <button class="description-toggle" data-desc-id="${descId}" onclick="toggleDescription('${descId}', this)">
                                 <span class="toggle-text">Читать далее</span>
                                 <span class="arrow">▼</span>
                             </button>
@@ -676,7 +687,7 @@
                             <div class="game-tags">
                                 ${game.tags.map(tag => {
                 const isActive = activeTagFilters.has(tag);
-                return `<span class="tag ${isActive ? 'highlight' : ''}">${tag}</span>`;
+                return `<span class="tag ${isActive ? 'highlight' : ''}" onclick="toggleTagFilter('${tag.replace(/'/g, "\\'")}')">${tag}</span>`;
             }).join('')}
                             </div>
                         </div>
