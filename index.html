@@ -601,7 +601,8 @@
         grid.style.display = 'grid';
         noResults.style.display = 'none';
 
-        grid.innerHTML = games.map(game => {
+        const shuffled = [...games].sort(() => Math.random() - 0.5);
+        grid.innerHTML = shuffled.map(game => {
             const linkText = game.link ? `<a href="${game.link}" target="_blank">${game.name}</a>` : game.name;
 
             // Создаем изображение с ссылкой
