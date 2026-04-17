@@ -830,6 +830,124 @@
         "стратегия",
         "приключения"
       ]
+    },
+    {
+      "name": "Хит!",
+      "link": "https://tesera.ru/game/family-Inc/",
+      "quantity": 1,
+      "photoUrl": "https://tesera.ru/images/items/2198339,3/200x200xpa/photo1.jpg",
+      "playersMin": 2,
+      "playersMax": 7,
+      "playersMinRecommend": 3,
+      "playersMaxRecommend": 7,
+      "timeToLearn": 5,
+      "playtimeMin": 15,
+      "playtimeMax": 30,
+      "descriptionShort": "Хит! — это простая, но захватывающая дух игра на удачу и просчёт. Хотите ощутить настоящий азарт и узнать, умеете ли вы вовремя остановиться? Считаете себя любимчиком судьбы? Тогда самое время сесть за стол и проверить это!",
+      "tags": [
+        "конфликтная"
+      ]
+    },
+    {
+      "name": "Хит!",
+      "link": "https://tesera.ru/game/magic-maze/",
+      "quantity": 1,
+      "photoUrl": "https://tesera.ru/images/items/952978,3/200x200xpa/photo1.jpg",
+      "playersMin": 1,
+      "playersMax": 8,
+      "playersMinRecommend": 3,
+      "playersMaxRecommend": 6,
+      "timeToLearn": 5,
+      "playtimeMin": 3,
+      "playtimeMax": 15,
+      "descriptionShort": "Кооперативные приключения в режиме реального времени. Ходы в игре отсутствуют, но игрок может выполнять лишь определённые действия, которых нет у остальных. Без согласованности не обойтись, вот только общаться запрещено",
+      "tags": [
+        "кооператив"
+      ]
+    },
+    {
+      "name": "Длина волны",
+      "link": "https://tesera.ru/game/wavelength/",
+      "quantity": 1,
+      "photoUrl": "https://tesera.ru/images/items/1406900,3/200x200xpa/photo1.jpg",
+      "playersMin": 2,
+      "playersMax": 20,
+      "playersMinRecommend": 6,
+      "playersMaxRecommend": 20,
+      "timeToLearn": 5,
+      "playtimeMin": 30,
+      "playtimeMax": 45,
+      "descriptionShort": "Социальная игра, в которой игроки, разбившись на команды, пытаются прочитать мысли друг друга.",
+      "tags": [
+        "абстрактная",
+        "вечеринка",
+        "объяснялки"
+      ]
+    },
+    {
+      "name": "Эпичные схватки боевых магов: Крутагидон. Братство конца",
+      "link": "https://hobbygames.ru/jepichnie-shvatki-boevih-magov-krutagidon-bratstvo-konca",
+      "quantity": 1,
+      "photoUrl": "https://hobbygames.ru/image/cache/hobbygames_beta/data/HobbyWorld/Shvatki_Magov/Krutagidon_Bratstvo/HG/Bratstvo_00-1000x416-wm.webp",
+      "playersMin": 2,
+      "playersMax": 5,
+      "playersMinRecommend": 3,
+      "playersMaxRecommend": 5,
+      "timeToLearn": 20,
+      "playtimeMin": 60,
+      "playtimeMax": 90,
+      "descriptionShort": "Как бы не был хорош и мясист Крутагидон, ему не хватало перчинки, изюминки, изящной безделушки или модного наворота. В общем, авторы посчитали, что для полноты картины нужно подкинуть в этот кипящий котёл безумия ещё немного ингредиентов и добавили в игру совершенно новую фракцию — Магогангстеров!",
+      "tags": [
+      ]
+    },
+    {
+      "name": "Манчкин",
+      "link": "https://tesera.ru/game/munchkin/",
+      "quantity": 1,
+      "photoUrl": "https://tesera.ru/images/items/742,3/200x200xpa/photo1.png",
+      "playersMin": 3,
+      "playersMax": 6,
+      "playersMinRecommend": 4,
+      "playersMaxRecommend": 5,
+      "timeToLearn": 20,
+      "playtimeMin": 45,
+      "playtimeMax": 90,
+      "descriptionShort": "Манчкинами любители настольных ролевых игр называют таких игроков, для которых важнее всего сделать своего персонажа наиболее крутым, а не получать удовольствие от совместной игры с друзьями. Как правило, уважающие себя ролевики сторонятся таких игроков. Если, конечно, речь не идёт о настолках, созданных специально для манчкинов.",
+      "tags": [
+      ]
+    },
+    {
+      "name": "EXIT: Квест. Полёт в неизвестность",
+      "link": "https://tesera.ru/game/The-Stormy-Flight/",
+      "quantity": 1,
+      "photoUrl": "https://tesera.ru/images/items/1627731,3/200x200xpa/photo1.png",
+      "playersMin": 1,
+      "playersMax": 6,
+      "playersMinRecommend": 3,
+      "playersMaxRecommend": 5,
+      "timeToLearn": 15,
+      "playtimeMin": 45,
+      "playtimeMax": 120,
+      "descriptionShort": "Игроки — часть экипажа пассажирского самолёта, который летит в Барбадос. Внезапно он попадает в середину грозы. Вода проникает на борт и часть систем управления выходят из строя. Удастся ли отремонтировать самолёт и безопасно приземлиться?",
+      "tags": [
+      ]
+    },
+    {
+      "name": "Нечто из глубокой бездны",
+      "link": "https://tesera.ru/game/Stay-Away/",
+      "quantity": 1,
+      "photoUrl": "https://tesera.ru/images/items/1627731,3/200x200xpa/photo1.png",
+      "playersMin": 4,
+      "playersMax": 12,
+      "playersMinRecommend": 6,
+      "playersMaxRecommend": 10,
+      "timeToLearn": 7,
+      "playtimeMin": 15,
+      "playtimeMax": 60,
+      "descriptionShort": "По сюжету игры Stay Away, игроков направили в составе спасательной экспедиции по следам пропавшей команды археологов, на поднявшийся из океана остров Р’льех. В первый же ход кто-то из них превращается в Нечто, местное существо, способное захватить контроль над человеческим телом, чтобы потом заместить человека. Задача спасателей — вычислить Нечто и уничтожить его, применив карту «Огнемёт». Нечто же пытается уничтожить всех людей или инфицировать их.",
+      "tags": [
+        "память"
+      ]
     }
   ]
 }
