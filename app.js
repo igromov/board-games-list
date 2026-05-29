@@ -19,7 +19,7 @@ const PLAYTIME_RANGES = {
 
 async function loadGames() {
     try {
-        const response = await fetch('games_database.json');
+        const response = await fetch('games_database.json', { cache: 'no-cache' });
         const data = await response.json();
         gamesData = data.games;
 
