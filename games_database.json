@@ -1065,6 +1065,25 @@
         "квест",
         "с приложением"
       ]
+    },
+    {
+      "name": "Кодовые Имена: Картинки (Codenames: Pictures)",
+      "link": "https://gaga.ru/game/codenames-pictures/",
+      "quantity": 1,
+      "photoUrl": "images/kodovye_imena_kartinki_codenames_pictures.jpg",
+      "playersMin": 2,
+      "playersMax": 8,
+      "playersMinRecommend": 2,
+      "playersMaxRecommend": 8,
+      "timeToLearn": 5,
+      "playtimeMin": 20,
+      "playtimeMax": 30,
+      "descriptionShort": "Продолжение Кодовых Имён на картинках вместо слов. Командная игра на ассоциации: капитан одним словом объединяет несколько абстрактных и забавных иллюстраций, а команда должна угадать, какие именно.",
+      "tags": [
+        "ассоциации",
+        "командная",
+        "карточная"
+      ]
     }
   ]
 }
